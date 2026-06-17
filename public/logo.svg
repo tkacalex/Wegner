@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" width="360" height="96" role="img" aria-label="Wegner Automobile">
+  <rect x="8" y="26" width="44" height="44" rx="12" fill="#0B0B0C"/>
+  <path d="M16 38 L24 59 L30 44" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M30 44 L36 59 L44 38" fill="none" stroke="#E11122" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="68" y="60" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="-0.5">
+    <tspan fill="#0B0B0C">WEG</tspan><tspan fill="#E11122">NER</tspan>
+  </text>
+  <text x="69" y="80" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="12.5" font-weight="600" letter-spacing="3" fill="#6B7280">AUTOMOBILE</text>
+</svg>

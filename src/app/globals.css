@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+    sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem; /* Platz für den Sticky-Header bei Ankern */
+  }
+
+  body {
+    @apply bg-white text-brand-ink antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-semibold tracking-tight text-brand-black;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-brand-red text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-red ring-offset-2 ring-offset-white;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply container;
+  }
+
+  .section {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-red;
+  }
+
+  .heading-xl {
+    @apply text-3xl leading-tight sm:text-4xl lg:text-5xl;
+  }
+
+  .heading-lg {
+    @apply text-2xl leading-tight sm:text-3xl lg:text-4xl;
+  }
+
+  .lead {
+    @apply text-base leading-relaxed text-brand-gray sm:text-lg;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold
+      transition-all duration-200 ease-out disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand-red text-white shadow-card hover:bg-brand-red-dark
+      hover:shadow-card-lg active:translate-y-px;
+  }
+
+  .btn-dark {
+    @apply btn bg-brand-black text-white hover:bg-brand-gray active:translate-y-px;
+  }
+
+  .btn-outline {
+    @apply btn border border-brand-line bg-white text-brand-ink hover:border-brand-black
+      hover:bg-brand-surface active:translate-y-px;
+  }
+
+  .btn-ghost {
+    @apply btn text-brand-ink hover:bg-brand-surface;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3.5 text-base;
+  }
+
+  /* Karten */
+  .card {
+    @apply rounded-2xl border border-brand-line bg-white shadow-card;
+  }
+
+  /* Formularfelder */
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-brand-ink;
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-brand-line bg-white px-4 py-3 text-base text-brand-ink
+      placeholder:text-brand-mute transition-colors
+      focus:border-brand-black focus:outline-none focus:ring-2 focus:ring-brand-red/40;
+  }
+
+  .field-error {
+    @apply mt-1.5 text-sm text-brand-red;
+  }
+
+  .link-underline {
+    @apply font-medium text-brand-red underline-offset-4 hover:underline;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

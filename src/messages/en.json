@@ -1,0 +1,364 @@
+{
+  "meta": {
+    "home": {
+      "title": "Wegner Automobile Egelsbach | Buy a used car & sell your car",
+      "description": "Wegner Automobile in Egelsbach: buy a used car, offer your vehicle online and book an appointment. Personal advice, fair prices and a quick response."
+    },
+    "sell": {
+      "title": "Sell your car in Egelsbach | Wegner Automobile",
+      "description": "Offer your vehicle online at Wegner Automobile in Egelsbach. Send your car details and photos – you will receive an initial assessment quickly."
+    },
+    "appointment": {
+      "title": "Book an appointment | Wegner Automobile Egelsbach",
+      "description": "Book an appointment at Wegner Automobile in Egelsbach: vehicle viewing, test drive, car valuation or advice."
+    },
+    "contact": {
+      "title": "Contact & location Egelsbach | Wegner Automobile",
+      "description": "Wegner Automobile, Boschring 7B, 63329 Egelsbach. Phone, e-mail, opening hours and directions. Personal advice in Egelsbach."
+    },
+    "privacy": {
+      "title": "Privacy Policy | Wegner Automobile",
+      "description": "Privacy policy of Wegner Automobile in Egelsbach."
+    },
+    "imprint": {
+      "title": "Imprint | Wegner Automobile",
+      "description": "Imprint of Wegner Automobile, Egelsbach."
+    }
+  },
+
+  "nav": {
+    "vehicles": "Vehicles",
+    "sell": "Sell your car",
+    "appointment": "Appointment",
+    "about": "About",
+    "contact": "Contact",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "home": "Home"
+  },
+
+  "common": {
+    "skipToContent": "Skip to content",
+    "callNow": "Call now",
+    "sendEmail": "Send e-mail",
+    "planRoute": "Get directions",
+    "viewOnAutoScout": "View vehicles on AutoScout24",
+    "offerCar": "Offer your car",
+    "bookAppointment": "Book an appointment",
+    "openingHours": "Opening hours",
+    "phone": "Phone",
+    "email": "E-mail",
+    "address": "Address",
+    "optional": "(optional)",
+    "yes": "Yes",
+    "no": "No",
+    "back": "Back",
+    "loading": "Loading …"
+  },
+
+  "hero": {
+    "badge": "Owner-run in Egelsbach",
+    "title": "Buy a used car & sell your car in Egelsbach",
+    "subtitle": "Wegner Automobile stands for fair prices, personal advice and carefully selected vehicles in Egelsbach, Langen, Dreieich, Darmstadt and the surrounding area.",
+    "ctaPrimary": "View vehicles on AutoScout24",
+    "ctaSecondary": "Offer your car",
+    "ctaTertiary": "Book an appointment",
+    "imageAlt": "Wegner Automobile location in Egelsbach",
+    "imagePlaceholder": "Photo of the location coming soon"
+  },
+
+  "vehicles": {
+    "eyebrow": "Vehicle stock",
+    "title": "Current vehicles at Wegner Automobile",
+    "text": "Our current vehicle stock is maintained regularly on AutoScout24. There you will find available vehicles, prices, photos and details.",
+    "cta": "View current vehicles on AutoScout24",
+    "points": [
+      "Regularly updated stock",
+      "Prices, photos and vehicle details",
+      "Send an enquiry directly via AutoScout24"
+    ],
+    "notConfiguredNote": "The direct AutoScout24 link will be added shortly. In the meantime, feel free to reach us by phone or e-mail.",
+    "carousel": { "details": "View details", "prev": "Previous", "next": "Next" }
+  },
+
+  "trust": {
+    "eyebrow": "Why Wegner Automobile",
+    "title": "Personal, fair and right on site",
+    "items": [
+      { "title": "Owner-run", "text": "A direct contact instead of an anonymous hotline – you talk to the people on site." },
+      { "title": "Personal advice", "text": "We take the time, listen and advise honestly – without pressure." },
+      { "title": "Fair prices", "text": "Transparent, market-based prices for buying and selling vehicles." },
+      { "title": "Buying & selling", "text": "Carefully selected used vehicles – and a fair offer for your car." },
+      { "title": "Egelsbach location", "text": "Centrally located at Boschring 7B in Egelsbach – easy to reach in the Rhine-Main area." },
+      { "title": "Easy to reach", "text": "Short distances from Langen, Dreieich, Darmstadt and southern Frankfurt." }
+    ]
+  },
+
+  "sellTeaser": {
+    "eyebrow": "Sell your car",
+    "title": "Selling your car? Offer your vehicle online.",
+    "subtitle": "Send us the most important vehicle details and photos. Anatoli Wegner or a team member will then get back to you with an initial assessment.",
+    "points": [
+      "Submit details and photos conveniently online",
+      "Initial assessment from Wegner Automobile",
+      "No obligation – you decide at your own pace"
+    ],
+    "cta": "Offer your car now"
+  },
+
+  "sell": {
+    "title": "Selling your car? Offer your vehicle online.",
+    "subtitle": "Send us the most important vehicle details and photos. Anatoli Wegner or a team member will then get back to you with an initial assessment.",
+    "intro": "A few steps to your offer: contact details, vehicle details, condition and photos. Required fields are marked with *.",
+    "stepProgress": "Step {current} of {total}",
+    "steps": [
+      { "key": "contact", "short": "Contact", "title": "Contact details" },
+      { "key": "vehicle", "short": "Vehicle", "title": "Vehicle details" },
+      { "key": "condition", "short": "Condition", "title": "Condition & equipment" },
+      { "key": "photos", "short": "Photos", "title": "Upload photos" }
+    ],
+    "buttons": {
+      "next": "Next",
+      "back": "Back",
+      "submit": "Send request",
+      "sending": "Sending …"
+    },
+    "fields": {
+      "name": { "label": "Name", "placeholder": "First and last name" },
+      "phone": { "label": "Phone", "placeholder": "e.g. 0174 4574455" },
+      "email": { "label": "E-mail", "placeholder": "name@example.com" },
+      "city": { "label": "City", "placeholder": "e.g. Egelsbach" },
+      "preferredContact": {
+        "label": "Preferred contact method",
+        "options": [
+          { "value": "phone", "label": "Phone" },
+          { "value": "email", "label": "E-mail" }
+        ]
+      },
+      "make": { "label": "Make", "placeholder": "e.g. Volkswagen" },
+      "model": { "label": "Model", "placeholder": "e.g. Golf" },
+      "year": { "label": "Year", "placeholder": "e.g. 2017" },
+      "mileage": { "label": "Mileage (km)", "placeholder": "e.g. 95000" },
+      "fuel": {
+        "label": "Fuel type",
+        "placeholder": "Please choose",
+        "options": [
+          { "value": "petrol", "label": "Petrol" },
+          { "value": "diesel", "label": "Diesel" },
+          { "value": "electric", "label": "Electric" },
+          { "value": "hybrid", "label": "Hybrid" },
+          { "value": "lpg_cng", "label": "LPG / CNG" },
+          { "value": "other", "label": "Other" }
+        ]
+      },
+      "transmission": {
+        "label": "Transmission",
+        "placeholder": "Please choose",
+        "options": [
+          { "value": "manual", "label": "Manual" },
+          { "value": "automatic", "label": "Automatic" }
+        ]
+      },
+      "power": { "label": "Power (hp)", "placeholder": "e.g. 150" },
+      "huValid": { "label": "MOT (HU/TÜV) valid until", "placeholder": "e.g. 09/2026" },
+      "accidentFree": {
+        "label": "Accident-free",
+        "placeholder": "Please choose",
+        "options": [
+          { "value": "yes", "label": "Yes" },
+          { "value": "no", "label": "No" },
+          { "value": "unknown", "label": "Unknown" }
+        ]
+      },
+      "serviceHistory": {
+        "label": "Full service history",
+        "placeholder": "Please choose",
+        "options": [
+          { "value": "yes", "label": "Yes" },
+          { "value": "no", "label": "No" },
+          { "value": "partial", "label": "Partial" }
+        ]
+      },
+      "previousOwners": { "label": "Number of previous owners", "placeholder": "e.g. 2" },
+      "roadworthy": {
+        "label": "Roadworthy",
+        "placeholder": "Please choose",
+        "options": [
+          { "value": "yes", "label": "Yes" },
+          { "value": "no", "label": "No" }
+        ]
+      },
+      "priceExpectation": { "label": "Price expectation (€)", "placeholder": "e.g. 9500" },
+      "damages": { "label": "Description of damage or defects", "placeholder": "e.g. small scratch rear left, stone chip in the windscreen" },
+      "equipment": { "label": "Special equipment", "placeholder": "e.g. navigation, tow bar, winter tyres" },
+      "lastService": { "label": "What was done most recently?", "placeholder": "e.g. new brakes, last service 3 months ago" },
+      "notes": { "label": "Other notes", "placeholder": "Anything else we should know" }
+    },
+    "photos": {
+      "intro": "Please upload clear photos. JPG, PNG and WEBP are allowed. Up to {maxFiles} images, each up to {maxSize} MB.",
+      "note": "Please do not upload a photo of the vehicle registration document at this stage – it may contain sensitive data.",
+      "add": "Choose photo",
+      "remove": "Remove",
+      "slots": [
+        { "key": "front", "label": "Exterior front" },
+        { "key": "back", "label": "Exterior rear" },
+        { "key": "interior", "label": "Interior" },
+        { "key": "odometer", "label": "Odometer / mileage" },
+        { "key": "damage", "label": "Damage (separately)" },
+        { "key": "more", "label": "Additional photos" }
+      ]
+    },
+    "privacy": {
+      "label": "I agree that my details may be used to process my enquiry.",
+      "link": "More in the privacy policy."
+    },
+    "validation": {
+      "required": "Please fill in.",
+      "name": "Please enter your name.",
+      "email": "Please enter a valid e-mail address.",
+      "phone": "Please enter a valid phone number.",
+      "contact": "Please provide at least a phone number or e-mail.",
+      "year": "Please enter a valid year.",
+      "mileage": "Please enter the mileage.",
+      "select": "Please choose.",
+      "privacy": "Please agree to the data processing.",
+      "fileType": "Only JPG, PNG or WEBP allowed.",
+      "fileSize": "File is too large (max. {maxSize} MB).",
+      "fileCount": "A maximum of {maxFiles} images is allowed.",
+      "turnstile": "Please confirm that you are not a robot."
+    },
+    "success": {
+      "title": "Thank you!",
+      "text": "Your vehicle details have been submitted. Wegner Automobile will get back to you as soon as possible.",
+      "again": "Offer another vehicle"
+    },
+    "error": {
+      "generic": "Unfortunately something went wrong while sending. Please try again.",
+      "mailNotConfigured": "Online submission is not yet activated. Please contact us directly – we are happy to help.",
+      "retry": "Try again"
+    }
+  },
+
+  "appointment": {
+    "eyebrow": "Appointment",
+    "title": "Book an appointment",
+    "subtitle": "Book a suitable time conveniently – online via the calendar or directly by phone.",
+    "typesTitle": "Possible appointment types",
+    "types": [
+      "Vehicle viewing",
+      "Test drive",
+      "Sell a car / vehicle valuation",
+      "General advice",
+      "Call-back appointment"
+    ],
+    "calendarTitle": "Online appointment calendar",
+    "embedNote": "Choose a free time slot in the calendar.",
+    "fallbackCta": "Book via calendar",
+    "notConfigured": "The online calendar will be embedded shortly. Until then, feel free to book by phone or e-mail – we will quickly find a suitable time.",
+    "loadCalendar": "Load calendar"
+  },
+
+  "about": {
+    "eyebrow": "About",
+    "title": "About Wegner Automobile",
+    "text": "Wegner Automobile is an owner-run used car dealer in Egelsbach. Owner Anatoli Wegner stands for personal advice, fair prices and a direct, honest approach to buying and selling vehicles.",
+    "imageAlt": "Wegner Automobile location in Egelsbach",
+    "imagePlaceholder": "Photo of the location coming soon",
+    "factsTitle": "At a glance",
+    "facts": [
+      "Owner-run used car dealer in Egelsbach.",
+      "Location: Boschring 7B, 63329 Egelsbach.",
+      "Buy vehicles, offer vehicles online and book appointments.",
+      "Current vehicle stock via AutoScout24.",
+      "Appointments via Google Calendar.",
+      "Serving Egelsbach, Langen, Dreieich, Darmstadt, southern Frankfurt and the surrounding area."
+    ]
+  },
+
+  "location": {
+    "eyebrow": "Location & contact",
+    "title": "Wegner Automobile in Egelsbach",
+    "subtitle": "Visit us at Boschring – or get in touch directly.",
+    "addressTitle": "Address",
+    "contactTitle": "Contact",
+    "hoursTitle": "Opening hours",
+    "hours": {
+      "weekdays": { "label": "Mon – Fri", "time": "3:30 pm – 6:30 pm" },
+      "saturday": { "label": "Saturday", "time": "9:00 am – 2:00 pm" },
+      "sunday": { "label": "Sunday", "time": "closed" }
+    },
+    "map": {
+      "title": "Map & directions",
+      "consent": "By loading the map you accept Google's privacy policy. Data will be transmitted to Google.",
+      "load": "Load map",
+      "openExternal": "Open in Google Maps",
+      "iframeTitle": "Map of Wegner Automobile location"
+    }
+  },
+
+  "social": {
+    "eyebrow": "Social media",
+    "title": "More from Wegner Automobile",
+    "text": "See more vehicles, insights and updates on Instagram and TikTok.",
+    "cards": [
+      { "key": "instagram", "label": "Instagram", "text": "Vehicles & insights", "cta": "View on Instagram" },
+      { "key": "tiktok", "label": "TikTok", "text": "Videos & updates", "cta": "View on TikTok" }
+    ]
+  },
+
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Frequently asked questions",
+    "items": [
+      { "q": "Where is Wegner Automobile located?", "a": "You'll find Wegner Automobile at Boschring 7B in 63329 Egelsbach – centrally located in the Rhine-Main area and easy to reach." },
+      { "q": "Can I sell my car at Wegner Automobile?", "a": "Yes. You can offer your vehicle conveniently online or book a valuation appointment directly. We buy used vehicles." },
+      { "q": "Can I arrange a test drive?", "a": "Yes. Simply book an appointment – by phone, e-mail or via the online calendar." },
+      { "q": "Where can I find the current vehicle stock?", "a": "We maintain our current vehicle stock on AutoScout24. There you can see available vehicles with prices, photos and details." },
+      { "q": "Does Wegner Automobile also serve customers from Langen and Dreieich?", "a": "Yes. Wegner Automobile is quick to reach from Langen, Dreieich, Darmstadt and southern Frankfurt." },
+      { "q": "Can I offer my vehicle online?", "a": "Yes. Use our \"Sell your car\" form to send vehicle details and photos – we'll get back to you with an initial assessment." },
+      { "q": "How quickly will I get a response?", "a": "We respond as quickly as possible. You will usually receive an initial reply to your enquiry promptly." },
+      { "q": "What types of vehicles do you buy?", "a": "We buy used vehicles. Simply offer your car online – we'll review your details and get back to you." }
+    ]
+  },
+
+  "footer": {
+    "tagline": "Owner-run used car dealer in Egelsbach. Fair prices, personal advice, buying and selling.",
+    "navTitle": "Navigation",
+    "legalTitle": "Legal",
+    "contactTitle": "Contact",
+    "socialTitle": "Follow us",
+    "imprint": "Imprint",
+    "privacy": "Privacy",
+    "rights": "All rights reserved.",
+    "disclaimer": "All information without guarantee."
+  },
+
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "The protection of your personal data is important to us. This privacy policy informs you about the nature, scope and purpose of the processing of personal data on this website.",
+      "todo": "Note: This privacy policy is a prepared template and must be legally reviewed and completed before publication.",
+      "sections": [
+        { "heading": "Controller", "body": "The controller responsible for data processing on this website is:\nWegner Automobile\nOwner: Anatoli Wegner\nBoschring 7B\n63329 Egelsbach\nPhone: 0174 4574455\nE-mail: wegnerautohaus@gmail.com\n\n[TODO: add legal form and further details if applicable]" },
+        { "heading": "Processing via the contact and sales form", "body": "When you contact us via the \"Sell your car\" form or by e-mail, we process the data you provide (e.g. name, contact details, vehicle data and uploaded photos) solely to handle your enquiry. The legal basis is Art. 6(1)(b) and (f) GDPR. The data is sent to us by e-mail and is not stored in a publicly accessible database." },
+        { "heading": "Spam protection (Cloudflare Turnstile)", "body": "To protect against automated abuse, the form may use Cloudflare Turnstile. Technical data may be transmitted to Cloudflare in the process. [TODO: add details if Turnstile is activated.]" },
+        { "heading": "Google Maps", "body": "For privacy reasons, the location map (Google Maps) is only loaded after your explicit consent. When loading, data is transmitted to Google. Provider: Google Ireland Limited." },
+        { "heading": "External links (AutoScout24, Instagram, TikTok)", "body": "Our website links to external services (e.g. AutoScout24, Instagram, TikTok). When you follow these links, the privacy policies of the respective providers apply." },
+        { "heading": "Hosting", "body": "This website is hosted by Vercel. [TODO: review and add data processing agreement / server location.]" },
+        { "heading": "Your rights", "body": "You have the right to access, rectification, erasure, restriction of processing, data portability and objection. You also have the right to lodge a complaint with a supervisory authority." }
+      ]
+    },
+    "imprint": {
+      "title": "Imprint",
+      "todo": "Note: Some of the following details are placeholders and must be completed fully and legally correctly before publication (information pursuant to § 5 DDG / § 18 MStV).",
+      "sections": [
+        { "heading": "Information pursuant to § 5 DDG", "body": "Wegner Automobile\nOwner: Anatoli Wegner\nBoschring 7B\n63329 Egelsbach\n\n[TODO: add legal form if applicable]" },
+        { "heading": "Contact", "body": "Phone: 0174 4574455\nE-mail: wegnerautohaus@gmail.com" },
+        { "heading": "VAT ID", "body": "[TODO: enter VAT identification number pursuant to § 27 a UStG, if available]" },
+        { "heading": "Responsible for content", "body": "Anatoli Wegner\nBoschring 7B\n63329 Egelsbach" },
+        { "heading": "Dispute resolution", "body": "The European Commission provides a platform for online dispute resolution (ODR). We are neither obliged nor willing to participate in a dispute resolution procedure before a consumer arbitration board. [TODO: adjust if necessary]" }
+      ]
+    }
+  }
+}
