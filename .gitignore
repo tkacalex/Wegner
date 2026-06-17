@@ -37,3 +37,5 @@ next-env.d.ts
 # lokale Tooling-Konfiguration
 /.claude/
 /scripts/*.tmp
+
+.vercel

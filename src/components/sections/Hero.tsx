@@ -63,7 +63,7 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
         <div className="animate-fade-in lg:pl-4">
           <Media
-            src={photos.exterior}
+            src={photos.hero}
             alt={dict.hero.imageAlt}
             placeholderLabel={dict.hero.imagePlaceholder}
             priority

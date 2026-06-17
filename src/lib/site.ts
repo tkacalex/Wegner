@@ -111,8 +111,9 @@ export function getSiteUrl(): string {
  *   exterior: "/images/standort-egelsbach.jpg"
  */
 export const photos = {
-  // Echtes Außenbild des Standorts.
-  exterior: "/aussenansc.png" as string,
+  // Echte Außenbilder des Standorts.
+  hero: "/aussenansc2.jpeg" as string, // oben (Hero)
+  about: "/aussenansc.png" as string, // weiter unten (Über uns)
 } as const;
 
 export const turnstile = {
