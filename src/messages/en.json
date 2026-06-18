@@ -34,6 +34,7 @@
     "contact": "Contact",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
+    "menuTitle": "Menu",
     "language": "Language",
     "home": "Home"
   },
@@ -58,7 +59,6 @@
   },
 
   "hero": {
-    "badge": "Owner-run in Egelsbach",
     "title": "Buy a used car & sell your car in Egelsbach",
     "subtitle": "Wegner Automobile stands for fair prices, personal advice and carefully selected vehicles in Egelsbach, Langen, Dreieich, Darmstadt and the surrounding area.",
     "ctaPrimary": "View vehicles on AutoScout24",

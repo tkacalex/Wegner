@@ -10,6 +10,7 @@ type Props = {
   current: Locale;
   label: string;
   className?: string;
+  compact?: boolean;
 };
 
 function swapLocale(pathname: string, next: Locale): string {
@@ -22,7 +23,7 @@ function swapLocale(pathname: string, next: Locale): string {
   return result || `/${next}`;
 }
 
-export function LanguageSwitcher({ current, label, className }: Props) {
+export function LanguageSwitcher({ current, label, className, compact = false }: Props) {
   const pathname = usePathname() || `/${current}`;
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -57,11 +58,22 @@ export function LanguageSwitcher({ current, label, className }: Props) {
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={label}
-        className="inline-flex items-center gap-1.5 rounded-lg border border-brand-line px-2.5 py-2 text-sm font-semibold text-brand-ink transition-colors hover:border-brand-black hover:bg-brand-surface"
+        className={clsx(
+          "inline-flex items-center rounded-lg border border-brand-line font-semibold text-brand-ink transition-colors hover:border-brand-black hover:bg-brand-surface",
+          compact
+            ? "gap-0.5 px-1.5 py-1.5 text-xs sm:gap-1 sm:px-2 sm:py-1.5 sm:text-sm"
+            : "gap-1.5 px-2.5 py-2 text-sm",
+        )}
       >
-        <GlobeIcon className="h-4 w-4" />
+        <GlobeIcon className={clsx(compact ? "h-3.5 w-3.5 sm:h-4 sm:w-4" : "h-4 w-4")} />
         <span>{localeShort[current]}</span>
-        <ChevronDownIcon className={clsx("h-4 w-4 transition-transform", open && "rotate-180")} />
+        <ChevronDownIcon
+          className={clsx(
+            compact ? "h-3.5 w-3.5 sm:h-4 sm:w-4" : "h-4 w-4",
+            "transition-transform",
+            open && "rotate-180",
+          )}
+        />
       </button>
 
       {open && (

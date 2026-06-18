@@ -5,14 +5,16 @@ import { InstagramIcon, TikTokIcon } from "./icons";
 type Props = {
   className?: string;
   iconClassName?: string;
-  variant?: "header" | "footer";
+  variant?: "header" | "footer" | "compact";
 };
 
 export function SocialIcons({ className, iconClassName, variant = "header" }: Props) {
   const base =
     variant === "footer"
       ? "inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 text-white/90 transition-colors hover:border-brand-red hover:text-white hover:bg-brand-red"
-      : "inline-flex h-9 w-9 items-center justify-center rounded-lg text-brand-gray transition-colors hover:bg-brand-surface hover:text-brand-black";
+      : variant === "compact"
+        ? "inline-flex h-8 w-8 items-center justify-center rounded-lg text-brand-gray transition-colors hover:bg-brand-surface hover:text-brand-black sm:h-9 sm:w-9"
+        : "inline-flex h-9 w-9 items-center justify-center rounded-lg text-brand-gray transition-colors hover:bg-brand-surface hover:text-brand-black";
 
   return (
     <div className={clsx("flex items-center gap-1.5", className)}>
@@ -23,7 +25,9 @@ export function SocialIcons({ className, iconClassName, variant = "header" }: Pr
         aria-label="Instagram – Wegner Automobile"
         className={base}
       >
-        <InstagramIcon className={clsx("h-5 w-5", iconClassName)} />
+        <InstagramIcon
+          className={clsx(variant === "compact" ? "h-4 w-4 sm:h-5 sm:w-5" : "h-5 w-5", iconClassName)}
+        />
       </a>
       <a
         href={site.social.tiktok}
@@ -32,7 +36,9 @@ export function SocialIcons({ className, iconClassName, variant = "header" }: Pr
         aria-label="TikTok – Wegner Automobile"
         className={base}
       >
-        <TikTokIcon className={clsx("h-5 w-5", iconClassName)} />
+        <TikTokIcon
+          className={clsx(variant === "compact" ? "h-4 w-4 sm:h-5 sm:w-5" : "h-5 w-5", iconClassName)}
+        />
       </a>
     </div>
   );

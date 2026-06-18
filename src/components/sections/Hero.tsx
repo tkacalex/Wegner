@@ -16,12 +16,7 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
       />
       <div className="container grid items-center gap-10 py-14 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:py-24">
         <div className="animate-fade-up">
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-line bg-white px-3.5 py-1.5 text-xs font-semibold text-brand-ink shadow-card">
-            <span className="h-2 w-2 rounded-full bg-brand-red" />
-            {dict.hero.badge}
-          </span>
-
-          <h1 className="heading-xl mt-5 text-brand-black">{dict.hero.title}</h1>
+          <h1 className="heading-xl text-brand-black">{dict.hero.title}</h1>
 
           <p className="lead mt-5 max-w-xl">{dict.hero.subtitle}</p>
 
