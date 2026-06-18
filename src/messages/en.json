@@ -243,7 +243,7 @@
   "appointment": {
     "eyebrow": "Appointment",
     "title": "Book an appointment",
-    "subtitle": "Book a suitable time conveniently – online via the calendar or directly by phone.",
+    "subtitle": "Book a suitable time by phone or e-mail – we will get back to you quickly.",
     "typesTitle": "Possible appointment types",
     "types": [
       "Vehicle viewing",
@@ -252,11 +252,8 @@
       "General advice",
       "Call-back appointment"
     ],
-    "calendarTitle": "Online appointment calendar",
-    "embedNote": "Choose a free time slot in the calendar.",
-    "fallbackCta": "Book via calendar",
-    "notConfigured": "The online calendar will be embedded shortly. Until then, feel free to book by phone or e-mail – we will quickly find a suitable time.",
-    "loadCalendar": "Load calendar"
+    "contactTitle": "Get in touch directly",
+    "contactText": "Call us or send an e-mail – we will quickly find a suitable time."
   },
 
   "about": {
@@ -271,7 +268,7 @@
       "Location: Boschring 7B, 63329 Egelsbach.",
       "Buy vehicles, offer vehicles online and book appointments.",
       "Current vehicle stock via AutoScout24.",
-      "Appointments via Google Calendar.",
+      "Appointments by phone or e-mail.",
       "Serving Egelsbach, Langen, Dreieich, Darmstadt, southern Frankfurt and the surrounding area."
     ]
   },
@@ -313,7 +310,7 @@
     "items": [
       { "q": "Where is Wegner Automobile located?", "a": "You'll find Wegner Automobile at Boschring 7B in 63329 Egelsbach – centrally located in the Rhine-Main area and easy to reach." },
       { "q": "Can I sell my car at Wegner Automobile?", "a": "Yes. You can offer your vehicle conveniently online or book a valuation appointment directly. We buy used vehicles." },
-      { "q": "Can I arrange a test drive?", "a": "Yes. Simply book an appointment – by phone, e-mail or via the online calendar." },
+      { "q": "Can I arrange a test drive?", "a": "Yes. Simply book an appointment by phone or e-mail." },
       { "q": "Where can I find the current vehicle stock?", "a": "We maintain our current vehicle stock on AutoScout24. There you can see available vehicles with prices, photos and details." },
       { "q": "Does Wegner Automobile also serve customers from Langen and Dreieich?", "a": "Yes. Wegner Automobile is quick to reach from Langen, Dreieich, Darmstadt and southern Frankfurt." },
       { "q": "Can I offer my vehicle online?", "a": "Yes. Use our \"Sell your car\" form to send vehicle details and photos – we'll get back to you with an initial assessment." },

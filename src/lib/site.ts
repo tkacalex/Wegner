@@ -52,7 +52,6 @@ export const GOOGLE_MAPS_EMBED =
 /** Platzhalter-Strings, die signalisieren, dass ein Link noch fehlt. */
 const PLACEHOLDERS = [
   "AUTO_SCOUT24_LINK_HIER_EINFUEGEN",
-  "GOOGLE_CALENDAR_BOOKING_LINK_HIER_EINFUEGEN",
 ];
 
 export function isConfigured(value: string | undefined | null): value is string {
@@ -62,7 +61,6 @@ export function isConfigured(value: string | undefined | null): value is string 
 }
 
 const rawAutoScout = process.env.NEXT_PUBLIC_AUTOSCOUT24_URL;
-const rawCalendar = process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_URL;
 const rawMaps = process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL;
 
 export const externalLinks = {
@@ -70,11 +68,6 @@ export const externalLinks = {
   autoScout24: {
     url: isConfigured(rawAutoScout) ? rawAutoScout : DEALER_AUTOSCOUT24,
     isConfigured: true,
-  },
-  /** Google-Kalender-Buchungslink. */
-  googleCalendar: {
-    url: isConfigured(rawCalendar) ? rawCalendar : "",
-    isConfigured: isConfigured(rawCalendar),
   },
   /** Google-Maps-Embed-URL (iframe src) – wird direkt angezeigt. */
   googleMapsEmbed: {

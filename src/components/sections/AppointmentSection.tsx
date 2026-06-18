@@ -1,9 +1,8 @@
 import type { Dictionary } from "@/i18n/dictionaries";
-import { externalLinks, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import { sections } from "@/lib/nav";
 import { Section, SectionHeader } from "@/components/Section";
-import { CalendarEmbed } from "@/components/CalendarEmbed";
-import { CheckIcon } from "@/components/icons";
+import { CheckIcon, PhoneIcon } from "@/components/icons";
 
 export function AppointmentSection({
   dict,
@@ -38,23 +37,23 @@ export function AppointmentSection({
           </div>
         </div>
 
-        <CalendarEmbed
-          url={externalLinks.googleCalendar.url}
-          isConfigured={externalLinks.googleCalendar.isConfigured}
-          labels={{
-            title: dict.appointment.calendarTitle,
-            embedNote: dict.appointment.embedNote,
-            loadCalendar: dict.appointment.loadCalendar,
-            fallbackCta: dict.appointment.fallbackCta,
-            notConfigured: dict.appointment.notConfigured,
-          }}
-          fallback={{
-            phone: site.phoneE164,
-            email: site.email,
-            callLabel: dict.common.callNow,
-            mailLabel: dict.common.sendEmail,
-          }}
-        />
+        <div className="card p-8 text-center">
+          <span className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-surface text-brand-red">
+            <PhoneIcon className="h-6 w-6" />
+          </span>
+          <h3 className="mt-4 text-lg font-semibold text-brand-black">
+            {dict.appointment.contactTitle}
+          </h3>
+          <p className="mx-auto mt-3 max-w-md text-brand-gray">{dict.appointment.contactText}</p>
+          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+            <a href={`tel:${site.phoneE164}`} className="btn-primary">
+              {dict.common.callNow}
+            </a>
+            <a href={`mailto:${site.email}`} className="btn-outline">
+              {dict.common.sendEmail}
+            </a>
+          </div>
+        </div>
       </div>
     </Section>
   );
