@@ -3,7 +3,7 @@ type LegalSection = { heading: string; body: string };
 type Props = {
   title: string;
   intro?: string;
-  todo: string;
+  todo?: string;
   sections: LegalSection[];
 };
 
@@ -15,9 +15,11 @@ export function LegalContent({ title, intro, todo, sections }: Props) {
           <h1 className="heading-lg text-brand-black">{title}</h1>
           {intro && <p className="lead mt-4">{intro}</p>}
 
-          <div className="mt-6 rounded-xl border border-brand-red/30 bg-brand-red/5 p-4 text-sm text-brand-ink">
-            {todo}
-          </div>
+          {todo ? (
+            <div className="mt-6 rounded-xl border border-brand-red/30 bg-brand-red/5 p-4 text-sm text-brand-ink">
+              {todo}
+            </div>
+          ) : null}
 
           <div className="mt-10 space-y-8">
             {sections.map((s) => (

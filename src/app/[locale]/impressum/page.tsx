@@ -20,5 +20,5 @@ export default function ImprintPage({ params }: { params: { locale: string } }) 
   const dict = getDictionary(params.locale);
   const i = dict.legal.imprint;
 
-  return <LegalContent title={i.title} todo={i.todo} sections={i.sections} />;
+  return <LegalContent title={i.title} sections={i.sections} />;
 }
