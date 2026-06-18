@@ -11,8 +11,7 @@ export function SellTeaserSection({ locale, dict }: { locale: Locale; dict: Dict
       <div className="card overflow-hidden">
         <div className="grid gap-8 p-8 sm:p-10 lg:grid-cols-[1.3fr_1fr] lg:items-center lg:gap-12 lg:p-14">
           <div>
-            <span className="eyebrow">{dict.sellTeaser.eyebrow}</span>
-            <h2 className="heading-lg mt-3 text-brand-black">{dict.sellTeaser.title}</h2>
+            <h2 className="heading-lg text-brand-black">{dict.sellTeaser.title}</h2>
             <p className="lead mt-4">{dict.sellTeaser.subtitle}</p>
 
             <Link href={localePath(locale, routes.sell)} className="btn-primary btn-lg mt-7">

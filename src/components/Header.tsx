@@ -33,6 +33,18 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             {dict.nav.vehicles}
           </Link>
           <Link
+            href={localePath(locale, routes.sell)}
+            className="rounded-lg px-3 py-2 text-sm font-medium text-brand-ink transition-colors hover:bg-brand-surface hover:text-brand-black"
+          >
+            {dict.nav.sell}
+          </Link>
+          <Link
+            href={localePath(locale, routes.appointment)}
+            className="rounded-lg px-3 py-2 text-sm font-medium text-brand-ink transition-colors hover:bg-brand-surface hover:text-brand-black"
+          >
+            {dict.nav.appointment}
+          </Link>
+          <Link
             href={sectionPath(locale, sections.about)}
             className="rounded-lg px-3 py-2 text-sm font-medium text-brand-ink transition-colors hover:bg-brand-surface hover:text-brand-black"
           >
@@ -49,21 +61,33 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         <div className="flex shrink-0 items-center gap-0.5 sm:gap-1.5">
           <SocialIcons variant="compact" className="lg:gap-1" />
           <LanguageSwitcher current={locale} label={dict.nav.language} compact />
+          <Link
+            href={localePath(locale, routes.sell)}
+            className="btn-primary hidden md:inline-flex"
+          >
+            {dict.common.offerCar}
+          </Link>
           <MobileMenu
             labels={{
               open: dict.nav.openMenu,
               close: dict.nav.closeMenu,
               title: dict.nav.menuTitle,
             }}
-            cta={{
-              label: dict.common.viewOnAutoScout,
-              href: externalLinks.autoScout24.url,
+            ctas={{
+              vehicles: {
+                label: dict.common.viewOnAutoScout,
+                href: externalLinks.autoScout24.url,
+              },
+              sell: {
+                label: dict.common.offerCar,
+                href: localePath(locale, routes.sell),
+              },
+              appointment: {
+                label: dict.common.bookAppointment,
+                href: localePath(locale, routes.appointment),
+              },
             }}
             links={{
-              vehicles: {
-                label: dict.nav.vehicles,
-                href: sectionPath(locale, sections.vehicles),
-              },
               about: {
                 label: dict.nav.about,
                 href: sectionPath(locale, sections.about),

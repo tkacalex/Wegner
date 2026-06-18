@@ -16,7 +16,6 @@ export function AppointmentSection({
       <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-14">
         <div>
           <SectionHeader
-            eyebrow={dict.appointment.eyebrow}
             title={dict.appointment.title}
             subtitle={dict.appointment.subtitle}
           />
