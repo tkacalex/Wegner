@@ -6,7 +6,7 @@
 export const site = {
   name: "Wegner Automobile",
   owner: "Anatoli Wegner",
-  legalForm: "", // TODO: Rechtsform ergänzen (z. B. Einzelunternehmen)
+  legalForm: "",
 
   address: {
     street: "Boschring 7B",

@@ -20,5 +20,5 @@ export default function PrivacyPage({ params }: { params: { locale: string } }) 
   const dict = getDictionary(params.locale);
   const p = dict.legal.privacy;
 
-  return <LegalContent title={p.title} intro={p.intro} todo={p.todo} sections={p.sections} />;
+  return <LegalContent title={p.title} intro={p.intro} sections={p.sections} />;
 }

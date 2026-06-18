@@ -377,11 +377,10 @@
     "privacy": {
       "title": "Datenschutzerklärung",
       "intro": "Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Diese Datenschutzerklärung informiert Sie über Art, Umfang und Zweck der Verarbeitung personenbezogener Daten auf dieser Website.",
-      "todo": "Hinweis: Diese Datenschutzerklärung ist eine vorbereitete Vorlage und muss vor Veröffentlichung rechtlich geprüft und vervollständigt werden (z. B. durch einen Datenschutz-Generator oder rechtliche Beratung).",
       "sections": [
         {
           "heading": "Verantwortlicher",
-          "body": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:\nWegner Automobile\nInhaber: Anatoli Wegner\nBoschring 7B\n63329 Egelsbach\nTelefon: 0174 4574455\nE-Mail: wegnerautohaus@gmail.com\n\n[TODO: ggf. Rechtsform und weitere Angaben ergänzen]"
+          "body": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:\nWegner Automobile\nInhaber: Anatoli Wegner\nBoschring 7B\n63329 Egelsbach\nTelefon: 0174 4574455\nE-Mail: wegnerautohaus@gmail.com"
         },
         {
           "heading": "Verarbeitung über das Kontakt- und Verkaufsformular",
@@ -389,7 +388,7 @@
         },
         {
           "heading": "Spam-Schutz (Cloudflare Turnstile)",
-          "body": "Zum Schutz vor automatisiertem Missbrauch kann das Formular Cloudflare Turnstile verwenden. Dabei können technische Daten an Cloudflare übermittelt werden. [TODO: Details ergänzen, sofern Turnstile aktiviert wird.]"
+          "body": "Zum Schutz vor automatisiertem Missbrauch kann das Formular Cloudflare Turnstile verwenden. Dabei können technische Daten an Cloudflare übermittelt werden."
         },
         {
           "heading": "Google Maps",
@@ -398,10 +397,6 @@
         {
           "heading": "Externe Links (AutoScout24, Instagram, TikTok)",
           "body": "Unsere Website verlinkt auf externe Dienste (z. B. AutoScout24, Instagram, TikTok). Beim Aufruf dieser Links gelten die Datenschutzbestimmungen der jeweiligen Anbieter."
-        },
-        {
-          "heading": "Hosting",
-          "body": "Diese Website wird bei Vercel gehostet. [TODO: Auftragsverarbeitung / Server-Standort prüfen und ergänzen.]"
         },
         {
           "heading": "Ihre Rechte",
@@ -414,7 +409,7 @@
       "sections": [
         {
           "heading": "Angaben gemäß § 5 DDG",
-          "body": "Wegner Automobile\nInhaber: Anatoli Wegner\nBoschring 7B\n63329 Egelsbach\n\n[TODO: Rechtsform ergänzen, falls zutreffend]"
+          "body": "Wegner Automobile\nInhaber: Anatoli Wegner\nBoschring 7B\n63329 Egelsbach"
         },
         {
           "heading": "Kontakt",

@@ -335,21 +335,19 @@
     "privacy": {
       "title": "Privacy Policy",
       "intro": "The protection of your personal data is important to us. This privacy policy informs you about the nature, scope and purpose of the processing of personal data on this website.",
-      "todo": "Note: This privacy policy is a prepared template and must be legally reviewed and completed before publication.",
       "sections": [
-        { "heading": "Controller", "body": "The controller responsible for data processing on this website is:\nWegner Automobile\nOwner: Anatoli Wegner\nBoschring 7B\n63329 Egelsbach\nPhone: 0174 4574455\nE-mail: wegnerautohaus@gmail.com\n\n[TODO: add legal form and further details if applicable]" },
+        { "heading": "Controller", "body": "The controller responsible for data processing on this website is:\nWegner Automobile\nOwner: Anatoli Wegner\nBoschring 7B\n63329 Egelsbach\nPhone: 0174 4574455\nE-mail: wegnerautohaus@gmail.com" },
         { "heading": "Processing via the contact and sales form", "body": "When you contact us via the \"Sell your car\" form or by e-mail, we process the data you provide (e.g. name, contact details, vehicle data and uploaded photos) solely to handle your enquiry. The legal basis is Art. 6(1)(b) and (f) GDPR. The data is sent to us by e-mail and is not stored in a publicly accessible database." },
-        { "heading": "Spam protection (Cloudflare Turnstile)", "body": "To protect against automated abuse, the form may use Cloudflare Turnstile. Technical data may be transmitted to Cloudflare in the process. [TODO: add details if Turnstile is activated.]" },
+        { "heading": "Spam protection (Cloudflare Turnstile)", "body": "To protect against automated abuse, the form may use Cloudflare Turnstile. Technical data may be transmitted to Cloudflare in the process." },
         { "heading": "Google Maps", "body": "For privacy reasons, the location map (Google Maps) is only loaded after your explicit consent. When loading, data is transmitted to Google. Provider: Google Ireland Limited." },
         { "heading": "External links (AutoScout24, Instagram, TikTok)", "body": "Our website links to external services (e.g. AutoScout24, Instagram, TikTok). When you follow these links, the privacy policies of the respective providers apply." },
-        { "heading": "Hosting", "body": "This website is hosted by Vercel. [TODO: review and add data processing agreement / server location.]" },
         { "heading": "Your rights", "body": "You have the right to access, rectification, erasure, restriction of processing, data portability and objection. You also have the right to lodge a complaint with a supervisory authority." }
       ]
     },
     "imprint": {
       "title": "Imprint",
       "sections": [
-        { "heading": "Information pursuant to § 5 DDG", "body": "Wegner Automobile\nOwner: Anatoli Wegner\nBoschring 7B\n63329 Egelsbach\n\n[TODO: add legal form if applicable]" },
+        { "heading": "Information pursuant to § 5 DDG", "body": "Wegner Automobile\nOwner: Anatoli Wegner\nBoschring 7B\n63329 Egelsbach" },
         { "heading": "Contact", "body": "Phone: 0174 4574455\nE-mail: wegnerautohaus@gmail.com" },
         { "heading": "Responsible for content", "body": "Anatoli Wegner\nBoschring 7B\n63329 Egelsbach" }
       ]
