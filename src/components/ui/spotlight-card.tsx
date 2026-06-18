@@ -1,99 +1,110 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  type CSSProperties,
-  type ReactNode,
-} from "react";
+import { useEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { clsx } from "clsx";
 
-type GlowColor = "red" | "blue" | "green" | "purple" | "orange";
+type GlowColor = "blue" | "purple" | "green" | "red" | "orange";
 
-const GLOW_PRESETS: Record<
-  GlowColor,
-  { base: number; spread: number; rgb: string }
-> = {
-  red: { base: 0, spread: 40, rgb: "225 17 34" },
-  blue: { base: 220, spread: 40, rgb: "59 130 246" },
-  green: { base: 120, spread: 40, rgb: "34 197 94" },
-  purple: { base: 280, spread: 40, rgb: "168 85 247" },
-  orange: { base: 30, spread: 40, rgb: "249 115 22" },
+const glowColorMap: Record<GlowColor, { base: number; spread: number }> = {
+  blue: { base: 220, spread: 200 },
+  purple: { base: 280, spread: 300 },
+  green: { base: 120, spread: 200 },
+  red: { base: 0, spread: 40 },
+  orange: { base: 30, spread: 200 },
 };
+
+const sizeMap = {
+  sm: "w-48 h-64",
+  md: "w-64 h-80",
+  lg: "w-80 h-96",
+} as const;
 
 type GlowCardProps = {
   children?: ReactNode;
   className?: string;
   glowColor?: GlowColor;
+  size?: keyof typeof sizeMap;
   width?: string | number;
   height?: string | number;
   customSize?: boolean;
 };
 
+const glowElements = new Set<HTMLElement>();
+let pointerListenerAttached = false;
+
+function syncGlowPointer(event: PointerEvent) {
+  glowElements.forEach((el) => {
+    const rect = el.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    el.style.setProperty("--x", x.toFixed(2));
+    el.style.setProperty("--y", y.toFixed(2));
+    el.style.setProperty("--xp", (x / Math.max(rect.width, 1)).toFixed(4));
+    el.style.setProperty("--yp", (y / Math.max(rect.height, 1)).toFixed(4));
+  });
+}
+
+function ensurePointerListener() {
+  if (pointerListenerAttached || typeof window === "undefined") return;
+  if (!window.matchMedia("(pointer: fine)").matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  document.addEventListener("pointermove", syncGlowPointer, { passive: true });
+  pointerListenerAttached = true;
+}
+
+function releasePointerListener() {
+  if (!pointerListenerAttached || glowElements.size > 0) return;
+  document.removeEventListener("pointermove", syncGlowPointer);
+  pointerListenerAttached = false;
+}
+
 export function GlowCard({
   children,
-  className,
+  className = "",
   glowColor = "red",
+  size = "md",
   width,
   height,
   customSize = false,
 }: GlowCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number | null>(null);
-  const preset = GLOW_PRESETS[glowColor];
-
-  const resetGlow = useCallback(() => {
-    const el = cardRef.current;
-    if (!el) return;
-    el.style.setProperty("--glow-x", "50%");
-    el.style.setProperty("--glow-y", "50%");
-  }, []);
-
-  const onPointerMove = useCallback((event: PointerEvent) => {
-    const el = cardRef.current;
-    if (!el) return;
-
-    if (rafRef.current !== null) return;
-
-    rafRef.current = window.requestAnimationFrame(() => {
-      rafRef.current = null;
-      const rect = el.getBoundingClientRect();
-      el.style.setProperty("--glow-x", `${event.clientX - rect.left}px`);
-      el.style.setProperty("--glow-y", `${event.clientY - rect.top}px`);
-    });
-  }, []);
+  const { base, spread } = glowColorMap[glowColor];
 
   useEffect(() => {
     const el = cardRef.current;
     if (!el) return;
 
-    const finePointer = window.matchMedia("(pointer: fine)");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--x", String(rect.width / 2));
+    el.style.setProperty("--y", String(rect.height / 2));
+    el.style.setProperty("--xp", "0.5");
+    el.style.setProperty("--yp", "0.5");
 
-    if (!finePointer.matches || reducedMotion.matches) return;
-
-    el.classList.add("glow-card--interactive");
-    el.addEventListener("pointermove", onPointerMove, { passive: true });
-    el.addEventListener("pointerleave", resetGlow, { passive: true });
+    glowElements.add(el);
+    ensurePointerListener();
 
     return () => {
-      el.classList.remove("glow-card--interactive");
-      el.removeEventListener("pointermove", onPointerMove);
-      el.removeEventListener("pointerleave", resetGlow);
-      if (rafRef.current !== null) {
-        window.cancelAnimationFrame(rafRef.current);
-        rafRef.current = null;
-      }
+      glowElements.delete(el);
+      releasePointerListener();
     };
-  }, [onPointerMove, resetGlow]);
+  }, []);
 
   const baseStyles: CSSProperties & Record<string, string | number> = {
-    "--glow-base": preset.base,
-    "--glow-spread": preset.spread,
-    "--glow-color": preset.rgb,
-    "--glow-x": "50%",
-    "--glow-y": "50%",
+    "--base": base,
+    "--spread": spread,
+    "--radius": "16",
+    "--border": "2",
+    "--size": "200",
+    "--saturation": glowColor === "red" ? 92 : 100,
+    "--lightness": glowColor === "red" ? 48 : 55,
+    "--bg-spot-opacity": 0.08,
+    "--border-spot-opacity": 0.9,
+    "--border-light-opacity": 0.35,
+    "--x": "50%",
+    "--y": "50%",
+    "--xp": "0.5",
+    "--yp": "0.5",
   };
 
   if (width !== undefined) baseStyles.width = width;
@@ -102,14 +113,18 @@ export function GlowCard({
   return (
     <div
       ref={cardRef}
-      className={clsx("glow-card", !customSize && "w-full", className)}
+      data-glow=""
       style={baseStyles}
+      className={clsx(
+        "relative isolate",
+        !customSize && sizeMap[size],
+        !customSize && "aspect-[3/4]",
+        customSize && "glow-card--image",
+        className,
+      )}
     >
-      <div aria-hidden="true" className="glow-card__border" />
-      <div aria-hidden="true" className="glow-card__shine" />
-      <div className={clsx("glow-card__content", "relative w-full")}>
-        {children}
-      </div>
+      <div data-glow-layer="" aria-hidden="true" className="pointer-events-none" />
+      <div className="relative z-[1] w-full">{children}</div>
     </div>
   );
 }

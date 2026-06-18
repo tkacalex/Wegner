@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import Image from "next/image";
 import type { Vehicle } from "@/lib/vehicles";
-import { GlowCard } from "@/components/ui/spotlight-card";
 import { ArrowRightIcon, ExternalIcon } from "./icons";
 
 type Props = {
@@ -57,28 +56,22 @@ export function VehicleCarousel({ vehicles, labels }: Props) {
             rel="noopener noreferrer"
             className="group w-[88%] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] transition-colors hover:border-brand-red sm:w-[52%] lg:w-[38%]"
           >
-            <GlowCard
-              glowColor="red"
-              customSize
-              className="overflow-hidden rounded-none p-0"
-            >
-              <div className="relative aspect-[4/3] w-full overflow-hidden bg-brand-gray">
-                {v.image ? (
-                  <Image
-                    src={v.image}
-                    alt={v.title}
-                    fill
-                    sizes="(max-width: 640px) 80vw, (max-width: 1024px) 46vw, 32vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                ) : null}
-                {v.price && (
-                  <span className="absolute left-3 top-3 z-[1] rounded-lg bg-brand-red px-2.5 py-1 text-sm font-bold text-white shadow-card">
-                    {v.price}
-                  </span>
-                )}
-              </div>
-            </GlowCard>
+            <div className="relative aspect-[4/3] w-full overflow-hidden bg-brand-gray">
+              {v.image ? (
+                <Image
+                  src={v.image}
+                  alt={v.title}
+                  fill
+                  sizes="(max-width: 640px) 80vw, (max-width: 1024px) 46vw, 32vw"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              ) : null}
+              {v.price && (
+                <span className="absolute left-3 top-3 z-[1] rounded-lg bg-brand-red px-2.5 py-1 text-sm font-bold text-white shadow-card">
+                  {v.price}
+                </span>
+              )}
+            </div>
 
             <div className="p-6">
               <h3 className="truncate text-xl font-semibold text-white sm:text-2xl">{v.title}</h3>
