@@ -62,6 +62,7 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             alt={dict.hero.imageAlt}
             placeholderLabel={dict.hero.imagePlaceholder}
             priority
+            glow
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="aspect-[4/3] w-full shadow-card-lg lg:aspect-[5/4]"
           />

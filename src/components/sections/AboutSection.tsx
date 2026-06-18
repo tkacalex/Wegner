@@ -14,6 +14,7 @@ export function AboutSection({ dict }: { dict: Dictionary }) {
             src={photos.about}
             alt={dict.about.imageAlt}
             placeholderLabel={dict.about.imagePlaceholder}
+            glow
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="aspect-[4/3] w-full shadow-card"
           />

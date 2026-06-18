@@ -117,6 +117,87 @@
   .link-underline {
     @apply font-medium text-brand-red underline-offset-4 hover:underline;
   }
+
+  /* GlowCard – roter Spotlight-Rand (Styles einmal global, nicht pro Karte) */
+  .glow-card {
+    position: relative;
+    isolation: isolate;
+    --glow-x: 50%;
+    --glow-y: 50%;
+    --glow-spread-px: calc(var(--glow-spread, 40) * 7px);
+    --glow-color: 225 17 34;
+  }
+
+  .glow-card__border {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    pointer-events: none;
+    padding: 1px;
+    background: radial-gradient(
+      var(--glow-spread-px) circle at var(--glow-x) var(--glow-y),
+      rgb(var(--glow-color) / 0.42),
+      rgb(var(--glow-color) / 0.1) 42%,
+      transparent 68%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  .glow-card__shine {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(
+      calc(var(--glow-spread-px) * 0.7) circle at var(--glow-x) var(--glow-y),
+      rgb(var(--glow-color) / 0.06),
+      transparent 65%
+    );
+    transition: opacity 0.2s ease;
+  }
+
+  .glow-card--interactive .glow-card__shine {
+    opacity: 1;
+  }
+
+  .glow-card__content {
+    position: relative;
+    z-index: 0;
+    border-radius: inherit;
+  }
+
+  @media (pointer: coarse) {
+    .glow-card {
+      box-shadow:
+        0 0 0 1px rgb(var(--glow-color) / 0.1),
+        0 12px 36px -14px rgb(var(--glow-color) / 0.2);
+    }
+
+    .glow-card__border {
+      background: linear-gradient(
+        135deg,
+        rgb(var(--glow-color) / 0.22),
+        rgb(var(--glow-color) / 0.05) 48%,
+        rgb(var(--glow-color) / 0.14)
+      );
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glow-card__shine {
+      display: none;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
