@@ -34,9 +34,8 @@ Alle Platzhalter sind bewusst markiert, damit nichts erfunden wird.
 | Was | Wo | Status |
 |-----|----|--------|
 | **AutoScout24-Link** | `.env.local` → `NEXT_PUBLIC_AUTOSCOUT24_URL` | TODO |
-| **Google-Kalender-Buchungslink** | `.env.local` → `NEXT_PUBLIC_GOOGLE_CALENDAR_URL` | TODO |
 | **Google-Maps Embed-URL** (optional) | `.env.local` → `NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL` | optional |
-| **E-Mail-Versand (Resend)** | `.env.local` → `RESEND_API_KEY`, `MAIL_FROM` | TODO |
+| **E-Mail-Versand (Gmail SMTP)** | `.env.local` → `SMTP_*`, `MAIL_FROM`, `CONTACT_EMAIL` | TODO |
 | **Spam-Schutz (Turnstile)** | `.env.local` → `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET_KEY` | optional |
 | **Logo (offizielle Datei)** | `public/logo.svg` ersetzen oder `src/components/Logo.tsx` anpassen | Platzhalter aktiv |
 | **Standort-Foto** | Bild nach `public/images/` legen, Pfad in `src/lib/site.ts` → `photos.exterior` | Platzhalter aktiv |
@@ -53,7 +52,7 @@ Alle Platzhalter sind bewusst markiert, damit nichts erfunden wird.
 Siehe [`.env.example`](.env.example). Wichtig:
 
 - `NEXT_PUBLIC_*` sind **öffentlich** (landen im Browser).
-- `RESEND_API_KEY` und `TURNSTILE_SECRET_KEY` sind **geheim** – niemals committen.
+- `SMTP_PASS` und `TURNSTILE_SECRET_KEY` sind **geheim** – niemals committen.
 - Auf Vercel unter **Project → Settings → Environment Variables** eintragen.
 
 `NEXT_PUBLIC_SITE_URL` setzt die kanonische Basis-URL (für Sitemap, OG, JSON-LD).
@@ -75,19 +74,35 @@ Es ist kein zusätzliches Setup nötig (keine Datenbank, kein Adminbereich).
 
 ---
 
-## E-Mail-Versand (Auto verkaufen)
+## E-Mail-Versand (Gmail SMTP)
 
-Das Verkaufsformular sendet die Anfrage **nur per E-Mail** an
-`CONTACT_EMAIL` (Standard: `wegnerautohaus@gmail.com`) über
-[Resend](https://resend.com). Es gibt **keine Datenbank** und **keinen
-Adminbereich**. Es werden **keine** personenbezogenen Daten in Logs geschrieben.
+Verkaufs- und Terminanfragen werden **nur per E-Mail** an `CONTACT_EMAIL`
+(Standard: `wegnerautohaus@gmail.com`) gesendet – über **Gmail SMTP** mit
+`nodemailer`. Es gibt **keine Datenbank**, **keinen Adminbereich** und **keinen
+Google-Kalender**. Es werden **keine** personenbezogenen Daten in Logs geschrieben.
 
-- Fotos werden als Anhang mitgeschickt (JPG/PNG/WEBP, max. 5 MB pro Bild,
-  max. 8 Bilder, gesamt ≤ 22 MB).
-- `MAIL_FROM` muss eine in Resend verifizierte Absenderdomain sein. Zum Testen
-  funktioniert `onboarding@resend.dev`.
-- Ohne `RESEND_API_KEY` zeigt das Formular einen freundlichen Hinweis mit
-  Telefon/E-Mail als Fallback.
+- Absender: `Wegner Automobile <noreply.wegner@gmail.com>` (`MAIL_FROM`)
+- Für Gmail: **2-Faktor-Authentifizierung** aktivieren und ein **Google
+  App-Passwort** erzeugen ([Google-Konto → App-Passwörter](https://myaccount.google.com/apppasswords)).
+- Das App-Passwort nur als `SMTP_PASS` in Vercel bzw. `.env.local` speichern –
+  **nicht** in GitHub committen.
+- Ohne `SMTP_USER` / `SMTP_PASS` zeigen die Formulare einen freundlichen Hinweis
+  mit Telefon/E-Mail als Fallback.
+
+**Verkaufsformular:** Fotos als Anhang (JPG/PNG/WEBP, max. 5 MB pro Bild,
+max. 8 Bilder, gesamt ≤ 22 MB).
+
+**Terminformular:** Terminwunsch per Formular – Bestätigung erfolgt manuell per
+Rückmeldung (Telefon/E-Mail).
+
+**E-Mail-Vorschau (lokal):** Mit Fake-Daten, ohne Versand:
+
+```bash
+npm run gen:email-preview
+```
+
+Öffnet danach im Browser: `docs/email-preview/appointment.html` und
+`docs/email-preview/sell.html`.
 
 ---
 
@@ -110,18 +125,19 @@ src/
 │  ├─ globals.css             # Designsystem (Tailwind)
 │  ├─ icon.svg                # Favicon
 │  ├─ robots.ts, sitemap.ts   # SEO
-│  ├─ api/sell/route.ts       # E-Mail-Versand (Resend)
+│  ├─ api/sell/route.ts          # Verkaufsanfragen per E-Mail
+│  ├─ api/appointment/route.ts   # Terminanfragen per E-Mail
 │  └─ [locale]/
 │     ├─ layout.tsx           # <html>, Header/Footer, Metadaten
 │     ├─ opengraph-image.tsx  # dynamisches OG-Bild
 │     ├─ page.tsx             # Startseite
 │     ├─ auto-verkaufen/      # Mehrschritt-Formular
-│     ├─ termin/              # Terminbuchung (Google-Kalender-Embed)
+│     ├─ termin/              # Terminanfrage-Formular
 │     ├─ kontakt/             # Standort + Karte
 │     ├─ datenschutz/, impressum/
 ├─ components/                # UI- und Section-Komponenten
 ├─ i18n/                      # Locale-Konfiguration + Dictionaries
-├─ lib/                       # site.ts, seo.ts, jsonld.ts, sell.ts, nav.ts …
+├─ lib/                       # site.ts, seo.ts, jsonld.ts, sell.ts, mail.ts, emailTemplates.ts …
 ├─ messages/                  # de.json, ru.json, en.json
 └─ middleware.ts              # Locale-Redirect
 ```
@@ -142,6 +158,6 @@ src/
 
 - **Kein Fahrzeugbestand** auf der Seite – Verlinkung auf AutoScout24.
 - Keine erfundenen Bewertungen, Garantien, Rechts- oder Verbrauchsdaten.
-- Karte & Kalender laden **erst nach Klick** (Datenschutz).
+- Karte lädt **erst nach Klick** (Datenschutz).
 - Impressum/Datenschutz sind **Vorlagen mit TODOs** und müssen vor der
   Veröffentlichung rechtlich geprüft werden.

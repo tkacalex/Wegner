@@ -1,24 +1,25 @@
+import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { site } from "@/lib/site";
-import { sections } from "@/lib/nav";
+import { AppointmentForm } from "@/components/form/AppointmentForm";
 import { Section, SectionHeader } from "@/components/Section";
-import { CheckIcon, PhoneIcon } from "@/components/icons";
+import { CheckIcon } from "@/components/icons";
+import { localePath, routes, sections } from "@/lib/nav";
+import { site } from "@/lib/site";
 
 export function AppointmentSection({
+  locale,
   dict,
   variant = "white",
 }: {
+  locale: Locale;
   dict: Dictionary;
   variant?: "white" | "surface";
 }) {
   return (
     <Section id={sections.appointment} variant={variant}>
-      <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-14">
+      <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14">
         <div>
-          <SectionHeader
-            title={dict.appointment.title}
-            subtitle={dict.appointment.subtitle}
-          />
+          <SectionHeader title={dict.appointment.title} subtitle={dict.appointment.subtitle} />
           <div className="mt-8">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-brand-mute">
               {dict.appointment.typesTitle}
@@ -36,22 +37,20 @@ export function AppointmentSection({
           </div>
         </div>
 
-        <div className="card p-8 text-center">
-          <span className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-surface text-brand-red">
-            <PhoneIcon className="h-6 w-6" />
-          </span>
-          <h3 className="mt-4 text-lg font-semibold text-brand-black">
-            {dict.appointment.contactTitle}
-          </h3>
-          <p className="mx-auto mt-3 max-w-md text-brand-gray">{dict.appointment.contactText}</p>
-          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
-            <a href={`tel:${site.phoneE164}`} className="btn-primary">
-              {dict.common.callNow}
-            </a>
-            <a href={`mailto:${site.email}`} className="btn-outline">
-              {dict.common.sendEmail}
-            </a>
-          </div>
+        <div className="min-w-0">
+          <AppointmentForm
+            locale={locale}
+            t={dict.appointment.form}
+            validation={dict.appointment.validation}
+            optionalLabel={dict.common.optional}
+            privacyHref={localePath(locale, routes.privacy)}
+            contact={{ phone: site.phoneE164, email: site.email }}
+            fallbackLabels={{ call: dict.common.callNow, mail: dict.common.sendEmail }}
+            phoneDisplay={site.phoneDisplay}
+            emailDisplay={site.email}
+            fallbackPhoneLabel={dict.appointment.fallback.phoneLabel}
+            fallbackEmailLabel={dict.appointment.fallback.emailLabel}
+          />
         </div>
       </div>
     </Section>

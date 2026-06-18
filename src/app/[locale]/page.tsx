@@ -47,7 +47,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
       <VehiclesSection dict={dict} vehicles={vehicles} />
       <TrustSection dict={dict} />
       <SellTeaserSection locale={locale} dict={dict} />
-      <AppointmentSection dict={dict} variant="white" />
+      <AppointmentSection locale={locale} dict={dict} variant="white" />
       <AboutSection dict={dict} />
       <LocationSection locale={locale} dict={dict} variant="white" />
       <SocialSection dict={dict} />

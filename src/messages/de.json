@@ -261,17 +261,87 @@
   "appointment": {
     "eyebrow": "Termin",
     "title": "Termin vereinbaren",
-    "subtitle": "Vereinbaren Sie einen passenden Termin – telefonisch oder per E-Mail. Wir melden uns schnell zurück.",
+    "subtitle": "Senden Sie uns Ihren Terminwunsch. Wir melden uns zur Bestätigung zurück.",
     "typesTitle": "Mögliche Terminarten",
     "types": [
       "Fahrzeugbesichtigung",
       "Probefahrt",
       "Auto verkaufen / Fahrzeugbewertung",
       "Allgemeine Beratung",
-      "Rückruftermin"
+      "Rückruf"
     ],
-    "contactTitle": "Direkt Kontakt aufnehmen",
-    "contactText": "Rufen Sie uns an oder schreiben Sie uns – wir finden schnell einen passenden Zeitpunkt."
+    "fallback": {
+      "phoneLabel": "Telefon",
+      "emailLabel": "E-Mail"
+    },
+    "form": {
+      "badge": "Terminanfrage",
+      "title": "Termin anfragen",
+      "intro": "Senden Sie uns Ihren Terminwunsch. Wir melden uns zur Bestätigung zurück.",
+      "fields": {
+        "name": { "label": "Name", "placeholder": "Vor- und Nachname" },
+        "phone": { "label": "Telefon", "placeholder": "z. B. 0174 4574455" },
+        "email": { "label": "E-Mail", "placeholder": "name@beispiel.de" },
+        "preferredContact": {
+          "label": "Bevorzugte Kontaktart",
+          "options": [
+            { "value": "phone", "label": "Telefon" },
+            { "value": "email", "label": "E-Mail" }
+          ]
+        },
+        "appointmentType": {
+          "label": "Terminart",
+          "placeholder": "Bitte wählen",
+          "options": [
+            { "value": "vehicle_viewing", "label": "Fahrzeugbesichtigung" },
+            { "value": "test_drive", "label": "Probefahrt" },
+            { "value": "sell_vehicle", "label": "Auto verkaufen / Fahrzeugbewertung" },
+            { "value": "consultation", "label": "Allgemeine Beratung" },
+            { "value": "callback", "label": "Rückruf" }
+          ]
+        },
+        "preferredDate": { "label": "Gewünschter Tag", "placeholder": "" },
+        "preferredTime": {
+          "label": "Gewünschtes Zeitfenster",
+          "placeholder": "Bitte wählen",
+          "options": [
+            { "value": "weekday_1530_1630", "label": "Mo–Fr: 15:30–16:30" },
+            { "value": "weekday_1630_1730", "label": "Mo–Fr: 16:30–17:30" },
+            { "value": "weekday_1730_1830", "label": "Mo–Fr: 17:30–18:30" },
+            { "value": "saturday_0900_1100", "label": "Samstag: 09:00–11:00" },
+            { "value": "saturday_1100_1400", "label": "Samstag: 11:00–14:00" },
+            { "value": "flexible", "label": "Flexibel" }
+          ]
+        },
+        "vehicleOrSubject": {
+          "label": "Fahrzeug oder Anliegen",
+          "placeholder": "z. B. BMW 320d, Kennzeichen, Modell"
+        },
+        "message": { "label": "Nachricht", "placeholder": "Weitere Hinweise (optional)" }
+      },
+      "privacy": {
+        "label": "Ich stimme zu, dass meine Angaben zur Bearbeitung meiner Terminanfrage verwendet werden dürfen.",
+        "link": "Mehr in der Datenschutzerklärung."
+      },
+      "submit": "Terminanfrage senden",
+      "sending": "Wird gesendet …",
+      "success": "Vielen Dank. Ihre Terminanfrage wurde gesendet. Wegner Automobile meldet sich schnellstmöglich zurück.",
+      "error": {
+        "generic": "Die Anfrage konnte gerade nicht gesendet werden. Bitte rufen Sie uns an oder schreiben Sie uns direkt per E-Mail.",
+        "mailNotConfigured": "Die Anfrage konnte gerade nicht gesendet werden. Bitte rufen Sie uns an oder schreiben Sie uns direkt per E-Mail."
+      }
+    },
+    "validation": {
+      "required": "Bitte ausfüllen.",
+      "name": "Bitte geben Sie Ihren Namen an.",
+      "email": "Bitte geben Sie eine gültige E-Mail-Adresse an.",
+      "phone": "Bitte geben Sie eine gültige Telefonnummer an.",
+      "contact": "Bitte geben Sie Telefon oder E-Mail an.",
+      "select": "Bitte wählen Sie eine Option.",
+      "privacy": "Bitte stimmen Sie der Datenverarbeitung zu.",
+      "date": "Bitte wählen Sie einen Tag.",
+      "time": "Bitte wählen Sie ein Zeitfenster."
+    }
   },
 
   "about": {

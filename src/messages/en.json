@@ -243,17 +243,87 @@
   "appointment": {
     "eyebrow": "Appointment",
     "title": "Book an appointment",
-    "subtitle": "Book a suitable time by phone or e-mail – we will get back to you quickly.",
+    "subtitle": "Send us your preferred appointment time. We will get back to you to confirm.",
     "typesTitle": "Possible appointment types",
     "types": [
       "Vehicle viewing",
       "Test drive",
       "Sell a car / vehicle valuation",
       "General advice",
-      "Call-back appointment"
+      "Call-back"
     ],
-    "contactTitle": "Get in touch directly",
-    "contactText": "Call us or send an e-mail – we will quickly find a suitable time."
+    "fallback": {
+      "phoneLabel": "Phone",
+      "emailLabel": "E-mail"
+    },
+    "form": {
+      "badge": "Appointment request",
+      "title": "Request an appointment",
+      "intro": "Send us your preferred appointment time. We will get back to you to confirm.",
+      "fields": {
+        "name": { "label": "Name", "placeholder": "First and last name" },
+        "phone": { "label": "Phone", "placeholder": "e.g. 0174 4574455" },
+        "email": { "label": "E-mail", "placeholder": "name@example.com" },
+        "preferredContact": {
+          "label": "Preferred contact method",
+          "options": [
+            { "value": "phone", "label": "Phone" },
+            { "value": "email", "label": "E-mail" }
+          ]
+        },
+        "appointmentType": {
+          "label": "Appointment type",
+          "placeholder": "Please select",
+          "options": [
+            { "value": "vehicle_viewing", "label": "Vehicle viewing" },
+            { "value": "test_drive", "label": "Test drive" },
+            { "value": "sell_vehicle", "label": "Sell a car / vehicle valuation" },
+            { "value": "consultation", "label": "General advice" },
+            { "value": "callback", "label": "Call-back" }
+          ]
+        },
+        "preferredDate": { "label": "Preferred date", "placeholder": "" },
+        "preferredTime": {
+          "label": "Preferred time window",
+          "placeholder": "Please select",
+          "options": [
+            { "value": "weekday_1530_1630", "label": "Mon–Fri: 3:30–4:30 pm" },
+            { "value": "weekday_1630_1730", "label": "Mon–Fri: 4:30–5:30 pm" },
+            { "value": "weekday_1730_1830", "label": "Mon–Fri: 5:30–6:30 pm" },
+            { "value": "saturday_0900_1100", "label": "Saturday: 9:00–11:00 am" },
+            { "value": "saturday_1100_1400", "label": "Saturday: 11:00 am–2:00 pm" },
+            { "value": "flexible", "label": "Flexible" }
+          ]
+        },
+        "vehicleOrSubject": {
+          "label": "Vehicle or topic",
+          "placeholder": "e.g. BMW 320d, licence plate, model"
+        },
+        "message": { "label": "Message", "placeholder": "Further details (optional)" }
+      },
+      "privacy": {
+        "label": "I agree that my details may be used to process my appointment request.",
+        "link": "More in the privacy policy."
+      },
+      "submit": "Send appointment request",
+      "sending": "Sending …",
+      "success": "Thank you. Your appointment request has been sent. Wegner Automobile will get back to you as soon as possible.",
+      "error": {
+        "generic": "Your request could not be sent right now. Please call us or write to us directly by e-mail.",
+        "mailNotConfigured": "Your request could not be sent right now. Please call us or write to us directly by e-mail."
+      }
+    },
+    "validation": {
+      "required": "Please fill in this field.",
+      "name": "Please enter your name.",
+      "email": "Please enter a valid e-mail address.",
+      "phone": "Please enter a valid phone number.",
+      "contact": "Please provide a phone number or e-mail address.",
+      "select": "Please select an option.",
+      "privacy": "Please agree to data processing.",
+      "date": "Please select a date.",
+      "time": "Please select a time window."
+    }
   },
 
   "about": {

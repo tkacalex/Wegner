@@ -1,12 +1,11 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
 import { makeSellSchema, UPLOAD } from "@/lib/sell";
-import { site } from "@/lib/site";
+import { renderSellEmail } from "@/lib/emailTemplates";
+import { sendWebsiteMail } from "@/lib/mail";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// Serverseitige (deutsche) Validierungsmeldungen – nur für die Logik relevant.
 const V = {
   required: "Pflichtfeld",
   name: "Name fehlt",
@@ -44,19 +43,15 @@ const SLOT_LABELS: Record<string, string> = {
   more: "Weitere Bilder",
 };
 
-const TOTAL_MAX_BYTES = 22 * 1024 * 1024; // Gesamt-Anhangsgrenze
+const TOTAL_MAX_BYTES = 22 * 1024 * 1024;
 
 function label(group: string, value: string): string {
   return LABELS[group]?.[value] ?? value;
 }
 
-function esc(s: string): string {
-  return s.replace(/[<>&]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;" })[c] as string);
-}
-
 async function verifyTurnstile(token: string | null, ip: string | null): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) return true; // nicht konfiguriert -> überspringen
+  if (!secret) return true;
   if (!token) return false;
   try {
     const body = new URLSearchParams({ secret, response: token });
@@ -88,14 +83,12 @@ export async function POST(request: Request) {
     }
     raw.privacy = form.get("privacy") === "true";
 
-    // Validierung (gleiches Schema wie im Client)
     const parsed = makeSellSchema(V).safeParse(raw);
     if (!parsed.success) {
       return NextResponse.json({ ok: false, error: "validation" }, { status: 400 });
     }
     const data = parsed.data;
 
-    // Spam-Schutz
     const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? null;
     const turnstileOk = await verifyTurnstile(
       (form.get("turnstileToken") as string) || null,
@@ -105,7 +98,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: "spam" }, { status: 400 });
     }
 
-    // Dateien einsammeln & prüfen
     const fileList = form.getAll("files").filter((f): f is File => f instanceof File);
     const slotList = form.getAll("fileSlots").map((s) => String(s));
     const attachments: { filename: string; content: Buffer }[] = [];
@@ -130,97 +122,50 @@ export async function POST(request: Request) {
 
     const locale = (form.get("locale") as string) || "de";
 
-    // E-Mail zusammenbauen (deutsch, für den Inhaber)
-    const rows: [string, string][] = [
-      ["Name", data.name],
-      ["Telefon", data.phone || "–"],
-      ["E-Mail", data.email || "–"],
-      ["Wohnort", data.city || "–"],
-      ["Bevorzugter Kontakt", label("preferredContact", data.preferredContact)],
-      ["—", "—"],
-      ["Marke", data.make],
-      ["Modell", data.model],
-      ["Baujahr", data.year],
-      ["Kilometerstand", data.mileage],
-      ["Kraftstoff", label("fuel", data.fuel)],
-      ["Getriebe", label("transmission", data.transmission)],
-      ["Leistung (PS)", data.power || "–"],
-      ["HU/TÜV bis", data.huValid || "–"],
-      ["Unfallfrei", label("accidentFree", data.accidentFree)],
-      ["Scheckheft", label("serviceHistory", data.serviceHistory)],
-      ["Vorbesitzer", data.previousOwners || "–"],
-      ["Fahrbereit", label("roadworthy", data.roadworthy)],
-      ["Preisvorstellung", data.priceExpectation ? `${data.priceExpectation} €` : "–"],
-      ["—", "—"],
-      ["Schäden/Mängel", data.damages || "–"],
-      ["Ausstattung", data.equipment || "–"],
-      ["Zuletzt gemacht", data.lastService || "–"],
-      ["Sonstiges", data.notes || "–"],
-    ];
-
-    const textBody = [
-      "Neue Fahrzeuganfrage über die Website (Auto verkaufen)",
-      `Sprache der Anfrage: ${locale.toUpperCase()}`,
-      "",
-      ...rows.map(([k, v]) => (k === "—" ? "" : `${k}: ${v}`)),
-      "",
-      photoSummary.length
-        ? `Fotos (${photoSummary.length}):\n${photoSummary.join("\n")}`
-        : "Keine Fotos übermittelt.",
-    ].join("\n");
-
-    const htmlBody = `
-      <div style="font-family:Arial,Helvetica,sans-serif;color:#16171A;max-width:640px">
-        <h2 style="margin:0 0 4px">Neue Fahrzeuganfrage</h2>
-        <p style="margin:0 0 16px;color:#6B7280">Eingang über die Website · Sprache: ${esc(locale.toUpperCase())}</p>
-        <table style="border-collapse:collapse;width:100%">
-          ${rows
-            .map(([k, v]) =>
-              k === "—"
-                ? `<tr><td colspan="2" style="padding:6px 0"><hr style="border:none;border-top:1px solid #E6E7EA"/></td></tr>`
-                : `<tr>
-                     <td style="padding:6px 12px 6px 0;color:#6B7280;vertical-align:top;white-space:nowrap">${esc(k)}</td>
-                     <td style="padding:6px 0;font-weight:600">${esc(v)}</td>
-                   </tr>`,
-            )
-            .join("")}
-        </table>
-        <p style="margin:16px 0 0;color:#6B7280">Fotos im Anhang: ${attachments.length}</p>
-      </div>`;
-
-    const recipient = process.env.CONTACT_EMAIL || site.email;
-    const from = process.env.MAIL_FROM || "Wegner Automobile <onboarding@resend.dev>";
-    const apiKey = process.env.RESEND_API_KEY;
-
-    if (!apiKey) {
-      return NextResponse.json({ ok: false, error: "mail_not_configured" }, { status: 200 });
-    }
-
-    const resend = new Resend(apiKey);
-    const subject = `Fahrzeuganfrage: ${data.make} ${data.model} (${data.year}) – ${data.name}`;
-
-    const { error } = await resend.emails.send({
-      from,
-      to: recipient,
-      subject,
-      text: textBody,
-      html: htmlBody,
-      replyTo: data.email || undefined,
-      attachments: attachments.length
-        ? attachments.map((a) => ({ filename: a.filename, content: a.content }))
-        : undefined,
+    const mail = renderSellEmail({
+      locale,
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      city: data.city,
+      preferredContact: label("preferredContact", data.preferredContact),
+      make: data.make,
+      model: data.model,
+      year: data.year,
+      mileage: data.mileage,
+      fuel: label("fuel", data.fuel),
+      transmission: label("transmission", data.transmission),
+      power: data.power || "–",
+      huValid: data.huValid || "–",
+      accidentFree: label("accidentFree", data.accidentFree),
+      serviceHistory: label("serviceHistory", data.serviceHistory),
+      previousOwners: data.previousOwners || "–",
+      roadworthy: label("roadworthy", data.roadworthy),
+      priceExpectation: data.priceExpectation ? `${data.priceExpectation} €` : "–",
+      damages: data.damages || "–",
+      equipment: data.equipment || "–",
+      lastService: data.lastService || "–",
+      notes: data.notes || "–",
+      photoCount: attachments.length,
+      photoSummary,
     });
 
-    if (error) {
-      // Kein Loggen personenbezogener Daten – nur der Provider-Fehler.
-      console.error("Resend send failed:", error.name ?? "unknown_error");
-      return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
+    const result = await sendWebsiteMail({
+      subject: mail.subject,
+      text: mail.text,
+      html: mail.html,
+      replyTo: data.email || undefined,
+      attachments: attachments.length ? attachments : undefined,
+    });
+
+    if (!result.ok) {
+      const status = result.error === "mail_not_configured" ? 200 : 502;
+      return NextResponse.json({ ok: false, error: result.error }, { status });
     }
 
     return NextResponse.json({ ok: true });
   } catch {
-    // Bewusst keine Roh-/PII-Daten loggen.
-    console.error("Sell route: unexpected error");
+    console.error("Unexpected mail error");
     return NextResponse.json({ ok: false, error: "server_error" }, { status: 500 });
   }
 }
