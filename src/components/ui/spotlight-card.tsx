@@ -107,7 +107,7 @@ export function GlowCard({
     >
       <div aria-hidden="true" className="glow-card__border" />
       <div aria-hidden="true" className="glow-card__shine" />
-      <div className={clsx("glow-card__content", !customSize && "h-full w-full")}>
+      <div className={clsx("glow-card__content", "relative w-full")}>
         {children}
       </div>
     </div>

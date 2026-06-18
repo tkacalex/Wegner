@@ -65,9 +65,17 @@ export function Media({
       <GlowCard
         glowColor="red"
         customSize
-        className={clsx("overflow-hidden p-0", rounded, className)}
+        className={clsx("w-full overflow-hidden p-0", rounded)}
       >
-        <div className={clsx("relative h-full w-full", rounded)}>{content}</div>
+        <div
+          className={clsx(
+            "relative overflow-hidden bg-brand-surface",
+            rounded,
+            className,
+          )}
+        >
+          {content}
+        </div>
       </GlowCard>
     );
   }
