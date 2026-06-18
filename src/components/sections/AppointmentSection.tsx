@@ -10,10 +10,12 @@ export function AppointmentSection({
   locale,
   dict,
   variant = "white",
+  defaultFormOpen = false,
 }: {
   locale: Locale;
   dict: Dictionary;
   variant?: "white" | "surface";
+  defaultFormOpen?: boolean;
 }) {
   return (
     <Section id={sections.appointment} variant={variant}>
@@ -50,6 +52,7 @@ export function AppointmentSection({
             emailDisplay={site.email}
             fallbackPhoneLabel={dict.appointment.fallback.phoneLabel}
             fallbackEmailLabel={dict.appointment.fallback.emailLabel}
+            defaultOpen={defaultFormOpen}
           />
         </div>
       </div>

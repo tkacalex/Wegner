@@ -17,5 +17,5 @@ export default function AppointmentPage({ params }: { params: { locale: string }
   const locale = params.locale as Locale;
   const dict = getDictionary(locale);
 
-  return <AppointmentSection locale={locale} dict={dict} variant="surface" />;
+  return <AppointmentSection locale={locale} dict={dict} variant="surface" defaultFormOpen />;
 }

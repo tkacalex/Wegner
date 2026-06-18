@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { directionsUrl, externalLinks, mapsPlaceUrl, site } from "@/lib/site";
-import { localePath, routes, sections } from "@/lib/nav";
+import { localePath, routes, sectionPath, sections } from "@/lib/nav";
 import { Section, SectionHeader } from "@/components/Section";
 import { MapEmbed } from "@/components/MapEmbed";
 import {
@@ -93,10 +93,10 @@ export function LocationSection({
               >
                 {dict.common.planRoute}
               </a>
-              <a href={`mailto:${site.email}`} className="btn-outline">
+              <Link href={sectionPath(locale, sections.appointment)} className="btn-outline">
                 <MailIcon className="h-4 w-4" />
                 {dict.common.sendEmail}
-              </a>
+              </Link>
               <Link href={localePath(locale, routes.appointment)} className="btn-outline">
                 {dict.common.bookAppointment}
                 <ArrowRightIcon className="h-4 w-4" />

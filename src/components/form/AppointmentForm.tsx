@@ -1,14 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { makeAppointmentSchema, type AppointmentType, type TimeSlot } from "@/lib/appointment";
+import { sections } from "@/lib/nav";
 import { TextField, SelectField, TextAreaField } from "./fields";
-import { CheckIcon, MailIcon, PhoneIcon } from "@/components/icons";
+import { CheckIcon, ChevronDownIcon, MailIcon, PhoneIcon } from "@/components/icons";
+import { clsx } from "clsx";
 
 type AppointmentFormDict = Dictionary["appointment"]["form"];
 type AppointmentValidationDict = Dictionary["appointment"]["validation"];
@@ -25,6 +27,7 @@ type Props = {
   emailDisplay: string;
   fallbackPhoneLabel: string;
   fallbackEmailLabel: string;
+  defaultOpen?: boolean;
 };
 
 export function AppointmentForm({
@@ -39,8 +42,22 @@ export function AppointmentForm({
   emailDisplay,
   fallbackPhoneLabel,
   fallbackEmailLabel,
+  defaultOpen = false,
 }: Props) {
   const schema = useMemo(() => makeAppointmentSchema(validation), [validation]);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  useEffect(() => {
+    const openFromHash = () => {
+      if (window.location.hash === `#${sections.appointment}`) {
+        setIsOpen(true);
+      }
+    };
+
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, []);
 
   const {
     register,
@@ -93,13 +110,16 @@ export function AppointmentForm({
       };
 
       if (res.ok && data.ok) {
+        setIsOpen(true);
         setStatus("success");
         return;
       }
 
+      setIsOpen(true);
       setErrorKind(data.error === "mail_not_configured" ? "mailNotConfigured" : "generic");
       setStatus("error");
     } catch {
+      setIsOpen(true);
       setErrorKind("generic");
       setStatus("error");
     }
@@ -124,10 +144,29 @@ export function AppointmentForm({
       <div className="h-1 bg-brand-red" aria-hidden />
 
       <div className="p-6 sm:p-8">
-        <span className="eyebrow text-xs sm:text-sm">{t.badge}</span>
-        <h3 className="mt-3 text-2xl font-semibold text-brand-black">{t.title}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-brand-gray sm:text-base">{t.intro}</p>
+        <button
+          type="button"
+          onClick={() => setIsOpen((value) => !value)}
+          aria-expanded={isOpen}
+          aria-controls="appointment-form-panel"
+          aria-label={isOpen ? t.toggleClose : t.toggleOpen}
+          className="flex w-full items-start justify-between gap-4 text-left"
+        >
+          <span className="min-w-0">
+            <span className="eyebrow text-xs sm:text-sm">{t.badge}</span>
+            <span className="mt-3 block text-2xl font-semibold text-brand-black">{t.title}</span>
+            <span className="mt-2 block text-sm leading-relaxed text-brand-gray sm:text-base">{t.intro}</span>
+          </span>
+          <ChevronDownIcon
+            className={clsx(
+              "mt-1 h-6 w-6 shrink-0 text-brand-mute transition-transform duration-200",
+              isOpen && "rotate-180",
+            )}
+            aria-hidden
+          />
+        </button>
 
+        <div id="appointment-form-panel" hidden={!isOpen}>
         <form onSubmit={onValid} noValidate className="mt-8 grid gap-5">
           <TextField
             id="appointment-name"
@@ -267,8 +306,9 @@ export function AppointmentForm({
             {status === "submitting" ? t.sending : t.submit}
           </button>
         </form>
+        </div>
 
-        <div className="mt-8 border-t border-brand-line pt-6 text-sm text-brand-gray">
+        <div className={clsx("border-t border-brand-line pt-6 text-sm text-brand-gray", isOpen ? "mt-8" : "mt-6")}>
           <p>
             <span className="font-medium text-brand-ink">{fallbackPhoneLabel}:</span>{" "}
             <a href={`tel:${contact.phone}`} className="link-underline">

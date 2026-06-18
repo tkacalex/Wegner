@@ -325,6 +325,8 @@
       },
       "submit": "Terminanfrage senden",
       "sending": "Wird gesendet …",
+      "toggleOpen": "Terminanfrage öffnen",
+      "toggleClose": "Terminanfrage schließen",
       "success": "Vielen Dank. Ihre Terminanfrage wurde gesendet. Wegner Automobile meldet sich schnellstmöglich zurück.",
       "error": {
         "generic": "Die Anfrage konnte gerade nicht gesendet werden. Bitte rufen Sie uns an oder schreiben Sie uns direkt per E-Mail.",
