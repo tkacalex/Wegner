@@ -16,6 +16,7 @@ export function TrustSection({ dict }: { dict: Dictionary }) {
         eyebrow={dict.trust.eyebrow}
         title={dict.trust.title}
         align="center"
+        prominentEyebrow
         className="mb-12"
       />
       <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

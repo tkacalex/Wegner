@@ -7,7 +7,7 @@ export function FaqSection({ dict }: { dict: Dictionary }) {
   return (
     <Section id={sections.faq} variant="surface">
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-        <SectionHeader eyebrow={dict.faq.eyebrow} title={dict.faq.title} />
+        <SectionHeader eyebrow={dict.faq.eyebrow} title={dict.faq.title} prominentEyebrow />
 
         <div className="divide-y divide-brand-line rounded-2xl border border-brand-line bg-white">
           {dict.faq.items.map((item, i) => (

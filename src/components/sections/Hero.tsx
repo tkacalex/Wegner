@@ -2,9 +2,9 @@ import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
 import { externalLinks, photos, site } from "@/lib/site";
-import { localePath, routes } from "@/lib/nav";
+import { localePath, routes, sectionPath, sections } from "@/lib/nav";
 import { Media } from "@/components/Media";
-import { ArrowRightIcon, ExternalIcon, PinIcon, ClockIcon } from "@/components/icons";
+import { ExternalIcon, PinIcon, ClockIcon } from "@/components/icons";
 
 export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   return (
@@ -30,12 +30,8 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               {dict.hero.ctaPrimary}
               <ExternalIcon className="h-4 w-4" />
             </a>
-            <Link href={localePath(locale, routes.sell)} className="btn-dark btn-lg">
-              {dict.hero.ctaSecondary}
-            </Link>
-            <Link href={localePath(locale, routes.appointment)} className="btn-outline btn-lg">
-              {dict.hero.ctaTertiary}
-              <ArrowRightIcon className="h-4 w-4" />
+            <Link href={sectionPath(locale, sections.contact)} className="btn-outline btn-lg">
+              {dict.nav.contact}
             </Link>
           </div>
 

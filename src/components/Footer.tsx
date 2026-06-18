@@ -12,8 +12,6 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
   const navLinks = [
     { label: dict.nav.vehicles, href: sectionPath(locale, sections.vehicles) },
-    { label: dict.nav.sell, href: localePath(locale, routes.sell) },
-    { label: dict.nav.appointment, href: localePath(locale, routes.appointment) },
     { label: dict.nav.about, href: sectionPath(locale, sections.about) },
     { label: dict.nav.contact, href: localePath(locale, routes.contact) },
   ];

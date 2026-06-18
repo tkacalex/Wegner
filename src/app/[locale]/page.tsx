@@ -15,8 +15,6 @@ import { JsonLd } from "@/components/JsonLd";
 import { Hero } from "@/components/sections/Hero";
 import { VehiclesSection } from "@/components/sections/VehiclesSection";
 import { TrustSection } from "@/components/sections/TrustSection";
-import { SellTeaserSection } from "@/components/sections/SellTeaserSection";
-import { AppointmentSection } from "@/components/sections/AppointmentSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { LocationSection } from "@/components/sections/LocationSection";
 import { SocialSection } from "@/components/sections/SocialSection";
@@ -46,8 +44,6 @@ export default async function HomePage({ params }: { params: { locale: string } 
       <Hero locale={locale} dict={dict} />
       <VehiclesSection dict={dict} vehicles={vehicles} />
       <TrustSection dict={dict} />
-      <SellTeaserSection locale={locale} dict={dict} />
-      <AppointmentSection dict={dict} variant="white" />
       <AboutSection dict={dict} />
       <LocationSection locale={locale} dict={dict} variant="white" />
       <SocialSection dict={dict} />

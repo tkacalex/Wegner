@@ -55,7 +55,7 @@ export function VehicleCarousel({ vehicles, labels }: Props) {
             href={v.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group w-[80%] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] transition-colors hover:border-brand-red sm:w-[46%] lg:w-[31.5%]"
+            className="group w-[88%] shrink-0 snap-start overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] transition-colors hover:border-brand-red sm:w-[52%] lg:w-[38%]"
           >
             <GlowCard
               glowColor="red"
@@ -80,12 +80,12 @@ export function VehicleCarousel({ vehicles, labels }: Props) {
               </div>
             </GlowCard>
 
-            <div className="p-5">
-              <h3 className="truncate text-lg font-semibold text-white">{v.title}</h3>
-              <p className="mt-1.5 flex flex-wrap gap-x-2 gap-y-0.5 text-sm text-white/60">
+            <div className="p-6">
+              <h3 className="truncate text-xl font-semibold text-white sm:text-2xl">{v.title}</h3>
+              <p className="mt-2 flex flex-wrap gap-x-2 gap-y-0.5 text-base text-white/60">
                 {[v.year, v.mileage, v.fuel, v.power].filter(Boolean).join(" · ")}
               </p>
-              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-red">
+              <span className="mt-5 inline-flex items-center gap-1.5 text-base font-semibold text-brand-red">
                 {labels.details}
                 <ExternalIcon className="h-4 w-4" />
               </span>

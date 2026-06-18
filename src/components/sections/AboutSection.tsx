@@ -21,8 +21,8 @@ export function AboutSection({ dict }: { dict: Dictionary }) {
         </div>
 
         <div className="order-1 lg:order-2">
-          <span className="eyebrow">{dict.about.eyebrow}</span>
-          <h2 className="heading-lg mt-3 text-brand-black">{dict.about.title}</h2>
+          <span className="eyebrow eyebrow-lg">{dict.about.eyebrow}</span>
+          <h2 className="heading-lg mt-4 text-brand-black">{dict.about.title}</h2>
           <p className="lead mt-4">{dict.about.text}</p>
 
           <div className="mt-8 rounded-2xl border border-brand-line bg-white p-6">

@@ -14,6 +14,7 @@ export function SocialSection({ dict }: { dict: Dictionary }) {
         title={dict.social.title}
         subtitle={dict.social.text}
         align="center"
+        prominentEyebrow
         className="mb-10"
       />
       <div className="mx-auto grid max-w-3xl gap-5 sm:grid-cols-2">

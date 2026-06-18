@@ -7,24 +7,21 @@ import { usePathname } from "next/navigation";
 import { clsx } from "clsx";
 import { MenuIcon, CloseIcon } from "./icons";
 
-type CtaLink = { label: string; href: string };
+type LinkItem = { label: string; href: string };
 
 type Props = {
   labels: { open: string; close: string; title: string };
-  ctas: {
-    vehicles: CtaLink;
-    sell: CtaLink;
-    appointment: CtaLink;
-  };
+  cta: LinkItem;
   links: {
-    about: CtaLink;
-    contact: CtaLink;
-    instagram: CtaLink;
-    tiktok: CtaLink;
+    vehicles: LinkItem;
+    about: LinkItem;
+    contact: LinkItem;
+    instagram: LinkItem;
+    tiktok: LinkItem;
   };
 };
 
-export function MobileMenu({ labels, ctas, links }: Props) {
+export function MobileMenu({ labels, cta, links }: Props) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
@@ -83,26 +80,23 @@ export function MobileMenu({ labels, ctas, links }: Props) {
         </div>
 
         <div className="flex-1 overflow-y-auto overscroll-contain px-4 py-5">
-          <div className="flex flex-col gap-3">
-            <a
-              href={ctas.vehicles.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={close}
-              className="btn-primary btn-lg w-full"
-            >
-              {ctas.vehicles.label}
-            </a>
-            <Link href={ctas.sell.href} onClick={close} className="btn-dark btn-lg w-full">
-              {ctas.sell.label}
-            </Link>
-            <Link href={ctas.appointment.href} onClick={close} className="btn-outline btn-lg w-full">
-              {ctas.appointment.label}
-            </Link>
-          </div>
+          <a
+            href={cta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={close}
+            className="btn-primary btn-lg w-full"
+          >
+            {cta.label}
+          </a>
 
           <nav className="mt-8" aria-label={labels.title}>
             <ul className="flex flex-col gap-1 border-t border-brand-line pt-6">
+              <li>
+                <Link href={links.vehicles.href} onClick={close} className={navLinkClass}>
+                  {links.vehicles.label}
+                </Link>
+              </li>
               <li>
                 <Link href={links.about.href} onClick={close} className={navLinkClass}>
                   {links.about.label}

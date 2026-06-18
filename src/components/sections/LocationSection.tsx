@@ -30,6 +30,7 @@ export function LocationSection({
         eyebrow={dict.location.eyebrow}
         title={dict.location.title}
         subtitle={dict.location.subtitle}
+        prominentEyebrow
         className="mb-10"
       />
 

@@ -39,6 +39,10 @@ type SectionHeaderProps = {
   align?: "left" | "center";
   tone?: "dark" | "light";
   className?: string;
+  /** Größere Eyebrow für Hauptsektionen. */
+  prominentEyebrow?: boolean;
+  /** Extra große Überschrift (z. B. Fahrzeugbestand). */
+  titleClassName?: string;
 };
 
 export function SectionHeader({
@@ -48,18 +52,23 @@ export function SectionHeader({
   align = "left",
   tone = "dark",
   className,
+  prominentEyebrow = false,
+  titleClassName,
 }: SectionHeaderProps) {
   return (
     <div
       className={clsx(
-        align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl",
+        align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-3xl",
         className,
       )}
     >
-      {eyebrow && <span className="eyebrow">{eyebrow}</span>}
+      {eyebrow && (
+        <span className={clsx("eyebrow", prominentEyebrow && "eyebrow-lg")}>{eyebrow}</span>
+      )}
       <h2
         className={clsx(
-          "heading-lg mt-3",
+          "heading-lg mt-4",
+          titleClassName,
           tone === "light" ? "text-white" : "text-brand-black",
         )}
       >
@@ -68,7 +77,7 @@ export function SectionHeader({
       {subtitle && (
         <p
           className={clsx(
-            "lead mt-4",
+            "lead mt-5 text-base sm:text-lg",
             tone === "light" && "text-white/70",
           )}
         >
