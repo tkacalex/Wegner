@@ -20,8 +20,8 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
           aria-label={`${dict.nav.home} – Wegner Automobile`}
           className="shrink-0"
         >
-          <Logo size={44} priority className="sm:hidden" />
-          <Logo size={56} priority className="hidden sm:block" />
+          <Logo size={50} priority className="sm:hidden" />
+          <Logo size={64} priority className="hidden sm:block" />
         </Link>
 
         {/* Desktop-Navigation */}
